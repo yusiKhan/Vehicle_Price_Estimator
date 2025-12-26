@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valuation Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="result-wrapper">
+    <div class="result-card">
+        {% if error %}
+            <div class="status-icon error">⚠️</div>
+            <h2>Estimation Failed</h2>
+            <p class="error-msg">{{ error }}</p>
+            <a href="/" class="btn-back">Try Again</a>
+        {% else %}
+            <div class="status-icon success">✓</div>
+            <h2>Estimated Market Value</h2>
+            <div class="price-display">{{ prediction }}</div>
+
+            <div class="summary-box">
+                <h4>Vehicle Summary</h4>
+                <div class="summary-grid">
+                    <div><span>Model:</span> {{ details['Brand'] }} {{ details['Model'] }}</div>
+                    <div><span>Year:</span> {{ details['Year']|int }}</div>
+                    <div><span>Condition:</span> {{ details['Condition'] }}</div>
+                    <div><span>Mileage:</span> {{ details['Mileage(km)']|int }} km</div>
+                </div>
+            </div>
+
+            <a href="/" class="btn-back">Estimate Another Vehicle</a>
+        {% endif %}
+    </div>
+    <footer class="app-footer result-footer">
+        <div class="footer-content">
+            <p class="dev-credit">
+                Model Pipeline Developed by <span class="dev-name">Yousaf Khan</span>
+            </p>
+            <span class="dev-role">Senior Data Scientist</span>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

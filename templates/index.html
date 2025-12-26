@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoValuate AI | Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="main-wrapper">
+    <header>
+        <div class="logo">🚗 AutoValuate<span class="highlight">AI</span></div>
+        <h1>Vehicle Price Estimator</h1>
+        <p>Enter specifications below to generate an instant market valuation.</p>
+    </header>
+
+    <div class="container">
+        <form action="/predict" method="POST" id="predictForm">
+            <div class="grid-layout">
+
+                {% for col in columns %}
+                {% set config = schema[col] %}
+
+                <div class="form-group">
+                    <label for="{{ col }}">{{ config.label }}</label>
+
+                    {% if config.type == 'select' %}
+                        <div class="select-wrapper">
+                            <select name="{{ col }}" id="{{ col }}" required>
+                                <option value="" disabled selected>Select...</option>
+                                {% for opt in config.options %}
+                                    <option value="{{ opt }}">{{ opt }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    {% elif config.type == 'number' %}
+                        <input type="number" name="{{ col }}" id="{{ col }}"
+                               step="{{ config.step|default('1') }}"
+                               min="{{ config.min }}" max="{{ config.max }}"
+                               placeholder="{{ config.placeholder }}"
+                               {% if config.readonly %}readonly class="readonly"{% endif %} required>
+
+                    {% else %}
+                        <input type="text" name="{{ col }}" id="{{ col }}"
+                               placeholder="{{ config.placeholder }}" required>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" id="submitBtn">
+                    <span class="btn-text">Calculate Valuation</span>
+                    <span class="loader"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p class="dev-credit">
+                Architected & Engineered by <span class="dev-name">Yousaf Khan</span>
+            </p>
+            <span class="dev-role">Senior Data Scientist</span>
+        </div>
+    </footer>
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
