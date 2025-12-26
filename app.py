@@ -8,7 +8,9 @@ app = Flask(__name__)
 # ---------------------------------------------------------
 # 1. CONFIGURATION & SCHEMA DEFINITION
 # ---------------------------------------------------------
-MODEL_PATH = 'model.pkl'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "model.pkl")
+
 
 # STRICT ORDER: Must match X_train.columns.tolist() exactly
 EXPECTED_COLUMNS = [
@@ -108,9 +110,10 @@ def load_model():
             model = joblib.load(MODEL_PATH)
             print(f"✅ Model loaded successfully from {MODEL_PATH}")
         else:
-            print(f"⚠️  WARNING: {MODEL_PATH} not found in root directory.")
+            print(f"⚠️ WARNING: model.pkl not found at {MODEL_PATH}")
     except Exception as e:
         print(f"❌ Error loading model: {e}")
+
 
 
 # ---------------------------------------------------------
