@@ -162,5 +162,6 @@ def predict():
         return render_template('result.html', error=f"Prediction Error: {str(e)}")
 
 
-if __name__ == "__main__":
-    app.run()
+if __name__ == '__main__':
+    load_model()
+    app.run(host="0.0.0.0", port=5000)
