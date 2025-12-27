@@ -168,3 +168,13 @@ def predict():
 if __name__ == '__main__':
     load_model()
     app.run(host="0.0.0.0", port=5000)
+
+
+    @app.route("/healthz")
+    def healthz():
+        return {
+            "status": "ok",
+            "service": "Vehicle Price Estimator",
+            "model_loaded": True
+        }, 200
+
