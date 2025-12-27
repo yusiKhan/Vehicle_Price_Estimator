@@ -17,7 +17,7 @@ This document explains how the Vehicle Price Estimator ML application is deploye
 
 ## 📦 Project Structure
 
-```text
+\`\`\`text
 .
 ├── app.py
 ├── model.pkl
@@ -26,14 +26,16 @@ This document explains how the Vehicle Price Estimator ML application is deploye
 ├── templates/
 ├── static/
 └── DEPLOYMENT.md
+\`\`\`
 
 ---
 
 ## 🤖 Model Details
-- Trained using a Scikit-Learn pipeline
-- Preprocessing handled internally (encoding + scaling)
-- Serialized using \`joblib\`
-- Loaded safely at runtime with validation & fallback checks
+
+* **Training:** Scikit-Learn pipeline.
+* **Preprocessing:** Handled internally (categorical encoding + scaling).
+* **Serialization:** Serialized using \`joblib\`.
+* **Safety:** Loaded safely at runtime with validation & fallback checks.
 
 **Model Version:** v1.0
 
@@ -44,45 +46,53 @@ This document explains how the Vehicle Price Estimator ML application is deploye
 ### Build Settings
 
 **Build Command**
-```bash
+\`\`\`bash
 pip install -r requirements.txt
-
+\`\`\`
 
 **Start Command**
-```bash
+\`\`\`bash
 gunicorn app:app
-
+\`\`\`
 
 ### ❤️ Health Check
-The application exposes a health endpoint:
-```text
-/healthz
 
-Used by Render to verify service availability.
+The application exposes a health endpoint:
+
+\`\`\`text
+/healthz
+\`\`\`
+
+* **Purpose:** Used by Render to verify service availability and manage routing.
 
 ### 🔄 Auto Deployment
-- Connected to GitHub (main branch)
-- Every push triggers automatic deployment
-- Zero-downtime reload supported by Render
+
+* Connected to **GitHub** (main branch).
+* Every push triggers automatic deployment.
+* **Zero-downtime reload** supported by Render.
 
 ---
 
 ## 🛡 Production Readiness
-- Gunicorn used instead of Flask development server
-- Strict feature schema validation
-- Graceful model loading & error handling
-- Environment-agnostic deployment
+
+* **Server:** Uses \`Gunicorn\` instead of the default Flask development server for concurrency.
+* **Validation:** Strict feature schema validation.
+* **Stability:** Graceful model loading & error handling.
+* **Portability:** Environment-agnostic deployment configuration.
 
 ---
 
 ## 👨‍💻 Author
+
 **Muhammad Yousaf Khan**
-Machine Learning Engineer
-GitHub: https://github.com/yusiKhan
+*Machine Learning Engineer*
+
+**GitHub:** [https://github.com/yusiKhan](https://github.com/yusiKhan)
+
+> **Project Summary:**
+> This project demonstrates a complete end-to-end ML system:
+> EDA → Model → Serialization → Cloud Deployment
 
 ## Deployment
 
 For full deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
-
-This project demonstrates a complete end-to-end ML system:
-EDA → Model → Serialization → Cloud Deployment
