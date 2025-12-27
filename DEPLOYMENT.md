@@ -1,22 +1,23 @@
 # 🚀 Vehicle Price Estimator – Deployment Guide
 
-This document explains how the Vehicle Price Estimator ML application
-is deployed in production using **Render.com**.
+This document explains how the Vehicle Price Estimator ML application is deployed in production using **Render.com**.
 
 ---
 
 ## 🔧 Tech Stack
-- Python 3.12
-- Flask (Backend)
-- Scikit-Learn (ML Pipeline)
-- Pandas & NumPy (Data Processing)
-- Gunicorn (Production WSGI Server)
-- Render.com (Cloud Hosting)
+
+* **Python 3.12**
+* **Flask** (Backend Framework)
+* **Scikit-Learn** (ML Pipeline)
+* **Pandas & NumPy** (Data Processing)
+* **Gunicorn** (Production WSGI Server)
+* **Render.com** (Cloud Hosting)
 
 ---
 
 ## 📦 Project Structure
-\`\`\`text
+
+```text
 .
 ├── app.py
 ├── model.pkl
@@ -25,7 +26,6 @@ is deployed in production using **Render.com**.
 ├── templates/
 ├── static/
 └── DEPLOYMENT.md
-\`\`\`
 
 ---
 
@@ -44,20 +44,20 @@ is deployed in production using **Render.com**.
 ### Build Settings
 
 **Build Command**
-\`\`\`bash
+```bash
 pip install -r requirements.txt
-\`\`\`
+
 
 **Start Command**
-\`\`\`bash
+```bash
 gunicorn app:app
-\`\`\`
+
 
 ### ❤️ Health Check
 The application exposes a health endpoint:
-\`\`\`text
+```text
 /healthz
-\`\`\`
+
 Used by Render to verify service availability.
 
 ### 🔄 Auto Deployment
