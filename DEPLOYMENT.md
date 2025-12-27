@@ -17,7 +17,6 @@ This document explains how the Vehicle Price Estimator ML application is deploye
 
 ## 📦 Project Structure
 
-\`\`\`text
 .
 ├── app.py
 ├── model.pkl
@@ -26,7 +25,7 @@ This document explains how the Vehicle Price Estimator ML application is deploye
 ├── templates/
 ├── static/
 └── DEPLOYMENT.md
-\`\`\`
+
 
 ---
 
@@ -46,22 +45,22 @@ This document explains how the Vehicle Price Estimator ML application is deploye
 ### Build Settings
 
 **Build Command**
-\`\`\`bash
+
 pip install -r requirements.txt
-\`\`\`
+
 
 **Start Command**
-\`\`\`bash
+
 gunicorn app:app
-\`\`\`
+
 
 ### ❤️ Health Check
 
 The application exposes a health endpoint:
 
-\`\`\`text
+
 /healthz
-\`\`\`
+
 
 * **Purpose:** Used by Render to verify service availability and manage routing.
 
@@ -92,7 +91,3 @@ The application exposes a health endpoint:
 > **Project Summary:**
 > This project demonstrates a complete end-to-end ML system:
 > EDA → Model → Serialization → Cloud Deployment
-
-## Deployment
-
-For full deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
